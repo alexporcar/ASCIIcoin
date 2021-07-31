@@ -1,0 +1,38 @@
+{% extends 'main/index.html' %}
+{% block content %}
+
+<section class="form text-center login">
+  <form method="POST" action="{% url 'register' %}">
+    {% csrf_token %}
+
+    <h1 class="h3 mb-4 fw-normal">Sign up</h1>
+
+    <div class="form-floating mb-3">
+      {{form.email}}
+      <label>Email address</label>
+    </div>
+
+    {% for error in form.email.errors %}
+      <p class="text-danger" style="text-align:left !important;">{{error}}</p>
+    {% endfor %}
+
+    <div class="form-floating mb-3">
+      {{form.password1}}
+      <label>Password</label>
+    </div>
+    
+    <div class="form-floating mb-3">
+      {{form.password2}}
+      <label>Password confirmation</label>
+    </div>
+
+    {% for error in form.password2.errors %}
+      <p class="text-danger" style="text-align:left !important;">{{error}}</p>
+    {% endfor %}
+
+    <button class="w-100 btn btn-lg btn-primary mb-4" type="submit">Register</button>
+  </form>
+  <p>Already have an account? <a href="{% url 'login' %}" style="margin-top:10px">Log in</a></p>
+</section>
+
+{% endblock %}

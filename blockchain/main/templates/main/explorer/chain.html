@@ -1,0 +1,36 @@
+{% extends 'main/index.html' %}
+{% block content %}
+
+<section class="row center-cards">
+  <div class="card border-warning col-5 full-card">
+    <div class="card-header"><h5 class="card-title pt-2">Latest Blocks</h5></div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th colspan="1" class="text-center">Height</th>
+            <th colspan="6" class="text-center">Hash</th>
+            <th colspan="2" class="text-center">Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for block in chain %}
+            <tr>
+              <td colspan="1" class="text-center">{{block.height}}</td>
+              <td colspan="6">
+                <a href="{% url 'block' block_hash=block.block_hash %}">
+                  <span class="d-inline-block text-truncate" style="width:100%">
+                    {{block.block_hash}}
+                  </span>
+                </a>
+              </td>
+              <td colspan="2" class="text-center">{{block.timestamp}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

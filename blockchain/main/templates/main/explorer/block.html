@@ -1,0 +1,67 @@
+{% extends 'main/index.html' %}
+{% block content %}
+
+<section class="row center-cards">
+  <div class="card border-warning col-5 full-card">
+    <div class="card-header"><h5 class="card-title pt-2">Block {{height}}</h5></div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th scope="row" colspan="2">Hash</th>
+            <td colspan="6">{{block_hash}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Previous Hash</th>
+            <td colspan="6">
+              {% if previous_hash == 'eab06ee07b5534d39b0323bb5e2fee864b5617765ab82878482c1dbf1d035b88' %}
+                {{previous_hash}}
+              {% else %}
+                <a href="{% url 'block' block_hash=previous_hash %}">{{previous_hash}}</a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Confirmations</th>
+            <td colspan="6">{{confirmations}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Timestamp</th>
+            <td colspan="6">{{timestamp}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Height</th>
+            <td colspan="6">{{height}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Number of Transactions</th>
+            <td colspan="6">{{number_transactions}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Merkle Root</th>
+            <td colspan="6">{{merkle_root}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Nonce</th>
+            <td colspan="6">{{nonce}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Transaction Volume</th>
+            <td colspan="6">{{transaction_volume}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Block Reward</th>
+            <td colspan="6">{{block_reward}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Fee Reward</th>
+            <td colspan="6">{{fee_reward}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% include 'main/explorer/filtered_tx.html' %}
+
+{% endblock %}

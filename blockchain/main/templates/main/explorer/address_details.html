@@ -1,0 +1,48 @@
+{% extends 'main/index.html' %}
+{% block content %}
+
+<section class="row center-cards">
+  <div class="card border-secondary col-5 full-card">
+    <div class="card-header"><h5 class="card-title pt-2">Address details</h5></div>
+    <div class="card-body d-flex">
+      <section class="d-flex">
+        <section class="">
+          {{svg|safe}}
+        </section>
+        <section class="address-data mt-3">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th scope="row" colspan="4">Address</th>
+                <td colspan="8">{{address}}</td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="4">Transactions Sent</th>
+                <td colspan="8">{{tx_sent}}</td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="4">Transactions Received</th>
+                <td colspan="8">{{tx_received}}</td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="4">Total Received</th>
+                <td colspan="8">{{total_received}}</td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="4">Total Sent</th>
+                <td colspan="8">{{total_sent}}</td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="4">Final Balance</th>
+                <td colspan="8">{{balance}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+    </div>
+  </div>
+</section>
+{% include 'main/explorer/filtered_tx.html' %}
+
+{% endblock %}

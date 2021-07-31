@@ -1,0 +1,32 @@
+{% extends 'main/index.html' %}
+{% block content %}
+
+<section class="account">
+  <section class="account-menu">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'account' %}">My Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'password' %}">Change Password</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'export' %}">Export Wallet</a>
+      </li>
+      {% if user.is_admin %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'connect' %}">Connect</a>
+        </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+      </li>
+    </ul>
+    </section>
+    <section class="account-content">
+      {% block account_block %}
+      {% endblock %}
+    <section>
+</section>
+
+{% endblock content %}

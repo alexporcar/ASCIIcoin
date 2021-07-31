@@ -1,0 +1,72 @@
+{% extends 'main/index.html' %}
+{% block content %}
+
+<section class="row center-cards">
+  <div class="card border-primary col-5 full-card-tx">
+    <div class="card-header"><h5 class="card-title pt-2">Transaction details</h5></div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th scope="row" colspan="2">Hash</th>
+            <td colspan="8">{{tx_hash}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Status</th>
+            <td colspan="8">{{status}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Timestamp</th>
+            <td colspan="8">{{timestamp}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Sender</th>
+            <td colspan="8">
+              {% if sender %}
+                <a href="{% url 'address' address=sender %}">{{sender}}</a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Receiver</th>
+            <td colspan="8">
+              {% if receiver %}
+                <a href="{% url 'address' address=receiver %}">{{receiver}}</a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Amount</th>
+            <td colspan="8">{{amount}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Fee</th>
+            <td colspan="8">{{fee}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Included in Block</th>
+            <td colspan="8">
+              {% if included_in_block %}
+                <a href="{% url 'block' block_hash=included_in_block %}">{{included_in_block}}</a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Confirmations</th>
+            <td colspan="8">{{confirmations}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Sender public key</th>
+            <td colspan="8">{{sender_public_key}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="2">Signature</th>
+            <td colspan="8">{{signature}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

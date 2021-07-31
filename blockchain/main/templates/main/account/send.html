@@ -1,0 +1,43 @@
+{% extends 'main/index.html' %}
+{% block content %}
+
+<section class="form text-center">
+
+  <form method="POST" action="{% url 'send' %}" class="login">
+    {% csrf_token %}
+
+    <h1 class="h3 mb-4 fw-normal">Send</h1>
+
+    <div class="form-floating mb-3">
+      {{form.receiver}}
+      <label>Receiver</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      {{form.amount}}
+      <label>Amount</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      {{form.fee}}
+      <label>Fee</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      {{form.password}}
+      <label>Password</label>
+    </div>
+
+    {% if tx_hash %}
+      <p class="text-success">New transaction added!</p>
+      <p class="text-success wrap-text">{{tx_hash}}</p>
+    {% elif error %}
+      <p class="text-danger">{{error}}</p>
+    {% endif %}
+
+    <button class="w-100 btn btn-lg btn-outline-primary mb-4" type="submit">Send</button>
+  </form>
+
+</section>
+
+{% endblock %}

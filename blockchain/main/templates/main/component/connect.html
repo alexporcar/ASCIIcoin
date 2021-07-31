@@ -1,0 +1,43 @@
+{% extends 'main/account/account.html' %}
+{% block account_block %}
+
+<section class="form text-center mt-3">
+
+  <form method="POST" action="{% url 'connect' %}" class="login">
+    {% csrf_token %}
+
+    <div class="form-floating mb-3">
+      {{form.ip_address}}
+      <label>IP Address</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      {{form.port}}
+      <label>Port</label>
+    </div>
+    
+    {% for error in form.ip_address.errors %}
+      <p class="text-danger" style="text-align:left !important;">{{error}}</p>
+    {% endfor %}
+    {% for error in form.port.errors %}
+      <p class="text-danger" style="text-align:left !important;">{{error}}</p>
+    {% endfor %}
+
+    {% if error %}
+        <p class="text-danger">{{error}}</p>
+    {% endif %}
+
+    {% if nodes_connected %}
+      {% if nodes_connected == 1 %}
+        <p class="text-success">Connected to {{nodes_connected}} node!</p>
+      {% else %}
+        <p class="text-success">Connected to {{nodes_connected}} nodes!</p>
+      {% endif %}
+    {% endif %}
+
+    <button class="w-100 btn btn-lg btn-outline-primary mb-4" type="submit">Connect</button>
+  </form>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container nav-style">
+    <a class="navbar-brand lato" href="{% url 'home' %}">HOME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse" id="navbarColor02">
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+          {% if user.is_admin %}
+            <li class="nav-item lato"><a class="nav-link" href="{% url 'sync' %}" title="Sync the chain">↻</a></li>
+            <li class="nav-item lato"><a class="nav-link" href="/admin">ADMIN</a></li>
+          {% endif %}
+          <li class="nav-item lato"><a class="nav-link" href="{% url 'send' %}">SEND</a></li>
+          <li class="nav-item lato"><a class="nav-link" href="{% url 'explorer' %}">EXPLORER</a></li>
+          <li class="nav-item lato"><a type="button" class="btn btn-outline-dark" href="{% url 'account' %}">ACCOUNT</a></li>
+        {% else %}
+          <li class="nav-item lato"><a class="nav-link" href="{% url 'explorer' %}">EXPLORER</a></li>
+          <li class="nav-item lato"><a type="button" class="btn btn-outline-dark" href="{% url 'login' %}">ACCESS</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

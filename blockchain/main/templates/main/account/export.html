@@ -1,0 +1,42 @@
+{% extends 'main/account/account.html' %}
+{% block account_block %}
+
+{% if allow %}
+    <section class="address-data mt-3">
+      <table class="table table-hover wrap-text">
+        <tbody>
+          <tr>
+            <th scope="row" colspan="3">Private key (base64)</th>
+            <td colspan="9">{{private_key}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="3">Public key (base64)</th>
+            <td colspan="9">{{public_key}}</td>
+          </tr>
+          <tr>
+            <th scope="row" colspan="3">Address</th>
+            <td colspan="9">{{address}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card border-danger mb-3" style="max-width: 20rem;">
+        <div class="card-body">
+          <p class="card-text">Keep the private key in a safe place in case you forget your password, as we cannot decrypt your private key.</p>
+        </div>
+      </div>
+    </section>
+{% else %}
+  <section class="form text-center login mt-3">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-floating mb-3">
+        <input type="password" name="password" id="password" required class="form-control" placeholder="password"/>
+        <label>Password</label>
+      </div>
+      <p class="text-danger" style="text-align:left !important;">{{error}}</p>
+      <button class="w-100 btn btn-lg btn-primary mb-4" type="submit">Show wallet</button>
+    </form>
+  </section>
+{% endif %}
+
+{% endblock %}
